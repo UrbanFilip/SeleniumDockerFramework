@@ -25,6 +25,7 @@ pipeline {
           bat "mvn test -Dbrowser=${params.BROWSER}"
         }
       }
+  }
 
       post {
           always {
@@ -40,5 +41,4 @@ pipeline {
               }
           }
       }
-  }
 }
