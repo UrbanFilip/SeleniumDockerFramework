@@ -4,6 +4,7 @@ pipeline {
 
   parameters {
     choice choices: ['chrome', 'firefox', 'edge'], description: 'Select browser', name: 'BROWSER'
+    choice choices: ['qa', 'staging', 'prod'], description: 'Select environment', name: 'ENVIRONMENT'
   }
 
   stages {
@@ -16,13 +17,13 @@ pipeline {
 
       stage('Start grid') {
         steps {
-         bat "docker-compose -f grid.yaml up -d"
-                }
-              }
+         bat "docker-compose -f grid.yaml up"
+        }
+      }
 
       stage('Run tests') {
         steps{
-          bat "mvn test -Dbrowser=${params.BROWSER}"
+          bat "mvn test -Dbrowser=${params.BROWSER} -Dremote="true" -Denv=${params.ENVIRONMENT}"
         }
       }
   }
