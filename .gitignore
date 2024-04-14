@@ -27,8 +27,6 @@
 ### Maven template
 **/target/
 **/result/
-**/allure-results/
-**/screenshot/
 **/pom.xml.tag
 **/pom.xml.releaseBackup
 **/pom.xml.versionsBackup
@@ -42,6 +40,9 @@
 **/*.iml
 
 **/.idea/
+
+allure-results/
+screenshot/
 
 
 **/HELP.md

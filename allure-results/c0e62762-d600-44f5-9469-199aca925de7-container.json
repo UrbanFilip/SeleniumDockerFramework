@@ -1,1 +1,0 @@
-{"uuid":"c0e62762-d600-44f5-9469-199aca925de7","name":"org.selenium.tests.DummyTest","children":["0f4bb287-b190-49f8-a122-ea94d12606fb"],"befores":[{"name":"startDriver","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1713088957789,"stop":1713088961536}],"afters":[],"start":1713088957710,"stop":1713088966923}
