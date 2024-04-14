@@ -17,7 +17,7 @@ pipeline {
 
       stage('Start grid') {
         steps {
-         bat "docker-compose -f grid.yaml up -d"
+         bat "docker-compose -f grid.yaml up"
         }
       }
 
@@ -31,15 +31,6 @@ pipeline {
       post {
           always {
           bat "docker-compose -f grid.yaml down"
-              script {
-                  allure([
-                          includeProperties: false,
-                          jdk              : '',
-                          properties       : [],
-                          reportBuildPolicy: 'ALWAYS',
-                          results          : [[path: 'allure-results']]
-                  ])
-              }
           }
       }
 }
