@@ -23,7 +23,7 @@ pipeline {
 
       stage('Run tests') {
         steps{
-          bat "mvn test -Dbrowser=${params.BROWSER} -Dremote="true" -Denv=${params.ENVIRONMENT}"
+          bat "mvn test -Dbrowser=${params.BROWSER} -Dremote=true -Denv=${params.ENVIRONMENT}"
         }
       }
   }

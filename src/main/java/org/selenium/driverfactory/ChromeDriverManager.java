@@ -22,7 +22,7 @@ public class ChromeDriverManager implements DriverManager {
     }
 
     public WebDriver getRemoteDriver() throws MalformedURLException {
-        String url = Config.URL.getProperty();
+        String url = Config.HUB_URL.getProperty();
         log.info("Grid url: {}", url);
         WebDriver driver = new RemoteWebDriver(new URL(url), getChromeOptions());
         driver.manage().window().maximize();

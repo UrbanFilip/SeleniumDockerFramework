@@ -13,7 +13,8 @@ public enum Config {
     URL,
     HEADLESS,
     REMOTE,
-    REGULAR_WAIT;
+    REGULAR_WAIT,
+    HUB_URL;
 
     private final Properties properties;
 

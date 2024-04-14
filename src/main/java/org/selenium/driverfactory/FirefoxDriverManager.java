@@ -22,7 +22,7 @@ public class FirefoxDriverManager implements DriverManager {
     }
 
     public WebDriver getRemoteDriver() throws MalformedURLException {
-        String url = Config.URL.getProperty();
+        String url = Config.HUB_URL.getProperty();
         log.info("Grid url: {}", url);
         WebDriver driver = new RemoteWebDriver(new URL(url), getFirefoxOptionsOptions());
         driver.manage().window().maximize();
