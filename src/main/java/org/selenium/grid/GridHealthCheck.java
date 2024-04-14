@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class GridHealthCheck {
 
-    private static final Logger log = LoggerFactory.getLogger(FirefoxDriverManager.class);
+    private static final Logger log = LoggerFactory.getLogger(GridHealthCheck.class);
 
     public static void waitForGrid() throws IOException, InterruptedException {
         log.info("Check if grid is up");
