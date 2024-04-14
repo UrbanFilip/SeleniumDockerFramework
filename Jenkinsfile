@@ -31,6 +31,15 @@ pipeline {
       post {
           always {
           bat "docker-compose -f grid.yaml down"
+              script {
+                  allure([
+                          includeProperties: false,
+                          jdk              : '',
+                          properties       : [],
+                          reportBuildPolicy: 'ALWAYS',
+                          results          : [[path: 'allure-results']]
+                  ])
+              }
           }
       }
 }
