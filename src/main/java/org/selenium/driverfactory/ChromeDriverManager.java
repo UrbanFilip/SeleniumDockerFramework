@@ -17,7 +17,6 @@ public class ChromeDriverManager implements DriverManager {
     public WebDriver getLocalDriver() {
         log.info("Local driver");
         WebDriver driver = new ChromeDriver(getChromeOptions());
-        driver.manage().window().maximize();
         return driver;
     }
 
@@ -25,7 +24,6 @@ public class ChromeDriverManager implements DriverManager {
         String url = Config.HUB_URL.getProperty();
         log.info("Grid url: {}", url);
         WebDriver driver = new RemoteWebDriver(new URL(url), getChromeOptions());
-        driver.manage().window().maximize();
         return driver;
     }
 

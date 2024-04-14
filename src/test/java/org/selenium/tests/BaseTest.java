@@ -7,6 +7,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.selenium.driverfactory.DriverManagerFactory;
 import org.selenium.grid.GridHealthCheck;
+import org.selenium.pages.MainPage;
 import org.selenium.utils.Config;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -19,13 +20,15 @@ import java.io.IOException;
 
 public class BaseTest {
     protected WebDriver driver;
+    protected MainPage mainPage;
 
     @BeforeClass
-    public void startDriver(ITestContext context) throws IOException, InterruptedException {
+    public void startDriverAndOpenBrowser(ITestContext context) throws IOException, InterruptedException {
         boolean remote = Boolean.parseBoolean(System.getProperty("remote", Config.REMOTE.getProperty()));
         driver = remote ? DriverManagerFactory.getRemoteDriver() : DriverManagerFactory.getLocalDriver();
         if (remote)
             GridHealthCheck.waitForGrid();
+        openBrowser();
     }
 
     @AfterMethod
@@ -52,4 +55,11 @@ public class BaseTest {
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(srcFile, destFile);
     }
+
+    private void openBrowser() {
+        mainPage = new MainPage(driver)
+                .load();
+        driver.manage().window().maximize();
+    }
+
 }

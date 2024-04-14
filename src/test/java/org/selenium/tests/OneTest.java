@@ -11,12 +11,6 @@ import org.testng.annotations.Test;
 public class OneTest extends BaseTest {
 
 
-    @BeforeClass
-    public void initializeMainPage() {
-        new MainPage(driver)
-                .load();
-    }
-
     @Severity(SeverityLevel.BLOCKER)
     @Test
     public void checkIfMainPageLoaded() {
