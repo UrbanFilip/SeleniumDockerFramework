@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.selenium.driverfactory.DriverManagerFactory;
+import org.selenium.grid.GridHealthCheck;
 import org.selenium.utils.Config;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -15,14 +16,16 @@ import org.testng.annotations.BeforeClass;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class BaseTest {
     protected WebDriver driver;
 
     @BeforeClass
-    public void startDriver(ITestContext context) throws MalformedURLException {
-        driver = Boolean.parseBoolean(System.getProperty("remote", Config.REMOTE.getProperty())) ? DriverManagerFactory.getRemoteDriver() : DriverManagerFactory.getLocalDriver();
+    public void startDriver(ITestContext context) throws IOException, InterruptedException {
+        boolean remote = Boolean.parseBoolean(System.getProperty("remote", Config.REMOTE.getProperty()));
+        driver = remote ? DriverManagerFactory.getRemoteDriver() : DriverManagerFactory.getLocalDriver();
+        if (remote)
+            GridHealthCheck.waitForGrid();
     }
 
     @AfterMethod
