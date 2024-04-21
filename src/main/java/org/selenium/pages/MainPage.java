@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.selenium.driverfactory.ChromeDriverManager;
 import org.selenium.pages.base.BasePage;
 import org.selenium.utils.Config;
 import org.slf4j.Logger;

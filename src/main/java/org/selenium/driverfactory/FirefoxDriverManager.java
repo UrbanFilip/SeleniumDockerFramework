@@ -16,17 +16,13 @@ public class FirefoxDriverManager implements DriverManager {
     private static final Logger log = LoggerFactory.getLogger(FirefoxDriverManager.class);
 
     public WebDriver getLocalDriver() {
-        WebDriver driver = new FirefoxDriver(getFirefoxOptionsOptions());
-        driver.manage().window().maximize();
-        return driver;
+        return new FirefoxDriver(getFirefoxOptionsOptions());
     }
 
     public WebDriver getRemoteDriver() throws MalformedURLException {
         String url = Config.HUB_URL.getProperty();
         log.info("Grid url: {}", url);
-        WebDriver driver = new RemoteWebDriver(new URL(url), getFirefoxOptionsOptions());
-        driver.manage().window().maximize();
-        return driver;
+        return new RemoteWebDriver(new URL(url), getFirefoxOptionsOptions());
     }
 
     private FirefoxOptions getFirefoxOptionsOptions() {

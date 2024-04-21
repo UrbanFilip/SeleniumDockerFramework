@@ -8,7 +8,6 @@ import static org.selenium.constants.Env.*;
 
 public enum Config {
 
-    GRID_HUB_URL,
     BROWSER,
     URL,
     HEADLESS,
