@@ -2,12 +2,22 @@ pipeline {
 
   agent any
 
+  options {
+          skipDefaultCheckout(true)
+      }
+
   parameters {
     choice choices: ['chrome', 'firefox', 'edge'], description: 'Select browser', name: 'BROWSER'
     choice choices: ['qa', 'staging', 'prod'], description: 'Select environment', name: 'ENVIRONMENT'
   }
 
   stages {
+
+      stage('Clean workspace') {
+        steps {
+          cleanWs()
+            }
+        }
 
       stage('Build Jar') {
         steps {
