@@ -40,6 +40,12 @@ pipeline {
       }
     }
 
+    stage('Show waitFor.bat') {
+      steps {
+        bat "type waitFor.bat & echo ---------------- & findstr /n /r \".*\" waitFor.bat"
+      }
+    }
+
     stage('Wait for Grid') {
       steps {
         bat "call waitFor.bat 90"
