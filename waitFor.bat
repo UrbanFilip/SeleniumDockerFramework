@@ -3,8 +3,6 @@
 REM Usage: waitFor.bat [TIMEOUT_SECONDS]
 REM Env (optional): HUB_URL=http://host:port/status
 
-REM Usunieto "setlocal enabledelayedexpansion", poniewaz nie bylo uzywane.
-
 set TIMEOUT=%~1
 if "%TIMEOUT%"=="" set TIMEOUT=90
 
@@ -16,9 +14,8 @@ set SLEEP=5
 echo [%time:~0,8%] [INFO] Waiting for Selenium Grid (%HUB_URL%) to become ready (timeout: %TIMEOUT%s)...
 
 :CHECK
-REM --- JSON parse via PowerShell: $resp.value.ready boolean ---
-REM Usunieto zbedny znak "^" przed komenda.
-powershell -NoProfile -Command "try { $r = Invoke-RestMethod -Uri '%HUB_URL%' -UseBasicParsing -TimeoutSec 3; if ($r.value.ready) { exit 0 } else { exit 2 } } catch { exit 3 }"
+REM --- Call external ps1 script
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0\check_grid.ps1" -HubUrl "%HUB_URL%"
 set PSRC=%ERRORLEVEL%
 
 if %PSRC%==0 (
