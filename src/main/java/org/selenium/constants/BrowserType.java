@@ -8,6 +8,7 @@ public enum BrowserType {
 
     @Getter
     private final String browserName;
+
     BrowserType(String browserName) {
         this.browserName = browserName;
     }

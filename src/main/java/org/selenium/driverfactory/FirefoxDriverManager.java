@@ -27,8 +27,9 @@ public class FirefoxDriverManager implements DriverManager {
 
     private FirefoxOptions getFirefoxOptionsOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        if (Boolean.parseBoolean(Config.HEADLESS.getProperty()))
+        if (Boolean.parseBoolean(Config.HEADLESS.getProperty())) {
             firefoxOptions.addArguments("--headless");
+        }
         firefoxOptions.addArguments("--incognito");
         return firefoxOptions;
     }

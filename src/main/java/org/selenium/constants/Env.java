@@ -11,6 +11,7 @@ public enum Env {
 
     @Getter
     private final String envType;
+
     Env(String envName) {
         this.envType = envName;
     }

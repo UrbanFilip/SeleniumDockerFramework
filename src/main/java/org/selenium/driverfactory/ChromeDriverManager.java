@@ -16,21 +16,20 @@ public class ChromeDriverManager implements DriverManager {
 
     public WebDriver getLocalDriver() {
         log.info("Local driver");
-        WebDriver driver = new ChromeDriver(getChromeOptions());
-        return driver;
+        return new ChromeDriver(getChromeOptions());
     }
 
     public WebDriver getRemoteDriver() throws MalformedURLException {
         String url = Config.HUB_URL.getProperty();
         log.info("Grid url: {}", url);
-        WebDriver driver = new RemoteWebDriver(new URL(url), getChromeOptions());
-        return driver;
+        return new RemoteWebDriver(new URL(url), getChromeOptions());
     }
 
     private ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        if (Boolean.parseBoolean(Config.HEADLESS.getProperty()))
+        if (Boolean.parseBoolean(Config.HEADLESS.getProperty())) {
             chromeOptions.addArguments("headless");
+        }
         chromeOptions.addArguments("--incognito");
         return chromeOptions;
     }
