@@ -40,11 +40,14 @@ pipeline {
       }
     }
 
-    stage('Wait for Grid') {
-      steps {
-        withEnv(['DEBUG=1']) { bat "call waitFor.bat 90" }
-      }
-    }
+   stage('Wait for Grid') {
+     steps {
+       withEnv(['GRID_URL=http://localhost:4444/status']) {
+         bat "java -cp target/classes org.selenium.GridHealthCheck %GRID_URL% 90 1000"
+       }
+     }
+   }
+
 
      stage('Validate suite file') {
           steps {
