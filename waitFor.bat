@@ -6,6 +6,8 @@ set TIMEOUT=%~1
 if "%TIMEOUT%"=="" set TIMEOUT=90
 
 set ELAPSED=0
+set SLEEP=5
+
 echo [%time:~0,8%] [INFO] Waiting for Selenium Grid to become ready (timeout: %TIMEOUT%s)...
 
 :CHECK
@@ -15,7 +17,7 @@ if %ERRORLEVEL%==0 (
     exit /b 0
 )
 
-set /a ELAPSED+=5
+set /a ELAPSED+=%SLEEP%
 set /a REMAINING=TIMEOUT-ELAPSED
 
 if %ELAPSED% GEQ %TIMEOUT% (
@@ -24,5 +26,8 @@ if %ELAPSED% GEQ %TIMEOUT% (
 )
 
 echo [%time:~0,8%] [INFO] Not ready yet... elapsed: %ELAPSED%s, remaining: %REMAINING%s
-timeout /t 5 /nobreak >nul
+
+REM --- stabilny sleep w Jenkinsie (bez 'timeout'):
+powershell -NoProfile -Command "Start-Sleep -Seconds %SLEEP%" 1>nul 2>nul
+
 goto CHECK
