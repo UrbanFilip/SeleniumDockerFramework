@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="All tests" verbose="1">
-    <test name="All tests">
+<suite name="Class with tw tests" verbose="1" parallel="tests" thread-count="10">
+    <test name="Two tests">
         <classes>
             <class name="org.selenium.tests.TwoTests"/>
         </classes>
